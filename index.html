@@ -3,6 +3,21 @@
 		<title>ChromeCastNodeCaster</title>
 	</head>
 	<body>
+		<script language="javascript">
+			window.onload = function() {
+				window.castReceiverManager = cast.receiver.CastReceiverManager.getInstance();
+
+				var appConfig = new cast.receiver.CastReceiverManager.Config();
+				appConfig.statusText = 'Ready to play';
+				appConfig.maxInactivity = 6000;
+
+				castReceiverManager.onSenderDisconnected = function(event) { 
+					console.log('Received Sender Disconnected event: ' + event.data); 
+				};
+
+				window.castReceiverManager.start(appConfig);
+			}
+		</script>
 		<style>
 			html, body {
 				padding: 0;
